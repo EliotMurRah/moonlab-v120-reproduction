@@ -1,0 +1,51 @@
+
+=== front F3 clifford_vs_stim ===
+correctness_ok = True
+  agreement: n20=True, n50=True, n100=True, n200=True, n500=True
+     n  moonlab M/s   stim M/s   ratio  verdict
+    20        3.247      1.913    1.70     lead
+    50        3.234      1.959    1.65     lead
+   100        3.192      1.968    1.62     lead
+   200        3.196      1.952    1.64     lead
+   500        3.080      1.831    1.68     lead
+
+=== front F3 batch_sampling_vs_stim ===
+correctness_ok = False  (SIMD neon x2, 12 physical cores)
+  gate random_clifford_n40:st     marginals=2.84s parity=0.37s corr=1.73s
+  gate random_clifford_n40:mt     marginals=2.81s parity=0.97s corr=2.15s
+  gate surface_code_d5_r8:st      marginals=3.08s parity=0.0s corr=0.0s
+  gate surface_code_d5_r8:mt      marginals=2.98s parity=0.0s corr=0.0s
+  gate surface_code_d5_r8_noisy:st marginals=3.26s parity=1.19s corr=2.1s
+  gate surface_code_d5_r8_noisy:mt marginals=3.68s parity=2.57s corr=2.53s
+workload                  shots  ML 1T M/s  ML MT M/s  stim M/s     1T       MT  verdict
+random_clifford_n40       10000        726        929       676  1.07x    1.37x     lead
+random_clifford_n40      100000       1169       4193       657  1.78x    6.38x     lead
+random_clifford_n40     1000000       1264       6158       634  1.99x    9.71x     lead
+surface_code_d5_r8        10000       1031       2223       830  1.24x    2.68x     lead
+surface_code_d5_r8       100000       1410       5682       924  1.53x    6.15x     lead
+surface_code_d5_r8      1000000       1365       6706       920  1.48x    7.29x     lead
+surface_code_d5_r8_noisy    10000       1245       3604       627  1.99x    5.75x     lead
+surface_code_d5_r8_noisy   100000       1271       5700       630  2.02x    9.04x     lead
+surface_code_d5_r8_noisy  1000000       1272       7272       617  2.06x   11.79x     lead
+  stim is single-threaded per sample() call; MT ratios use all cores.
+  ratios are against stim's best of {unpacked, bit_packed}.
+
+  -- detector sampling (vs stim compile_detector_sampler) --
+  noiseless detectors fired: moonlab=0 stim=0 (must be 0: a detector is a deterministic parity)
+  gate surface_code_d5_r8_noisy:st    marginals=6.01s corr=1.11s fire_rate ml=0.0135 stim=0.01347
+  gate surface_code_d5_r8_noisy:mt    marginals=3.59s corr=1.92s fire_rate ml=0.01341 stim=0.01347
+   ndet    shots  ML 1T M/s  ML MT M/s  stim M/s     1T       MT  verdict
+    120    10000        997       2441       577  1.73x    4.23x     lead
+    120   100000       1109       5934       638  1.74x    9.30x     lead
+    120  1000000       1024       5071       626  1.64x    8.10x     lead
+
+=== front F3 decoder_vs_pymatching ===
+correctness_ok = True  (fails only if significantly WORSE than PyMatching anywhere)
+Traceback (most recent call last):
+  File "<MOONLAB_CLONE>/benchmarks/dominance/run_dominance.py", line 95, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "<MOONLAB_CLONE>/benchmarks/dominance/run_dominance.py", line 85, in main
+    f"{r['pm_err']:.6f}  McNemar z={r['mcnemar_z']} {r['accuracy']}  "
+                                    ~^^^^^^^^^^^^^
+KeyError: 'mcnemar_z'

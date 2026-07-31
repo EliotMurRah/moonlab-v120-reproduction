@@ -1,0 +1,187 @@
+{
+ "study": "moonlab_v120_reproduction/phase3_decoder",
+ "authored_by": "Claude",
+ "referee_pending": "Codex",
+ "host": "Apple M2 Pro, macOS 26.5.2, arm64",
+ "versions": {
+  "moonlab_src_commit": "4bf83a6c47e7f1c53db14fcb2a61053499fd82df",
+  "stim": "1.16.0",
+  "pymatching": "2.4.0"
+ },
+ "results": [
+  {
+   "config": {
+    "id": "A",
+    "d": 3,
+    "p": 0.008,
+    "provenance": "vendor family"
+   },
+   "seed": 1816267031,
+   "shots": 200000,
+   "ndet": 24,
+   "nobs": 1,
+   "edges": 78,
+   "corr_links": 147,
+   "hyper_skipped": 0,
+   "void_out_of_regime": false,
+   "logical_error_rate": {
+    "pymatching": 0.040335,
+    "moonlab_uf": 0.040335,
+    "moonlab_corr": 0.039725
+   },
+   "wilson95": {
+    "pymatching": [
+     0.03948154033983102,
+     0.041206117162982836
+    ],
+    "moonlab_uf": [
+     0.03948154033983102,
+     0.041206117162982836
+    ],
+    "moonlab_corr": [
+     0.03887782452844506,
+     0.040589856406817906
+    ]
+   },
+   "mcnemar": {
+    "uf_vs_pm": {
+     "only_first_bad": 0,
+     "only_second_bad": 0,
+     "z_positive_favours_first": 0.0
+    },
+    "corr_vs_pm": {
+     "only_first_bad": 1381,
+     "only_second_bad": 1503,
+     "z_positive_favours_first": 2.253
+    },
+    "corr_vs_uf": {
+     "only_first_bad": 1381,
+     "only_second_bad": 1503,
+     "z_positive_favours_first": 2.253
+    }
+   },
+   "decode_seconds_singlethread": {
+    "pymatching": 0.06761004199506715,
+    "moonlab_uf": 0.00787829200271517,
+    "moonlab_corr": 0.018510624999180436
+   },
+   "corr_reduction_vs_pm_pct": 1.51
+  },
+  {
+   "config": {
+    "id": "B",
+    "d": 5,
+    "p": 0.008,
+    "provenance": "vendor family"
+   },
+   "seed": 515528563,
+   "shots": 200000,
+   "ndet": 120,
+   "nobs": 1,
+   "edges": 502,
+   "corr_links": 1151,
+   "hyper_skipped": 0,
+   "void_out_of_regime": false,
+   "logical_error_rate": {
+    "pymatching": 0.048965,
+    "moonlab_uf": 0.04908,
+    "moonlab_corr": 0.041755
+   },
+   "wilson95": {
+    "pymatching": [
+     0.04802788702724442,
+     0.04991943896403542
+    ],
+    "moonlab_uf": [
+     0.048141832196698826,
+     0.050035489376988145
+    ],
+    "moonlab_corr": [
+     0.040887116956752796,
+     0.04264048599839266
+    ]
+   },
+   "mcnemar": {
+    "uf_vs_pm": {
+     "only_first_bad": 268,
+     "only_second_bad": 245,
+     "z_positive_favours_first": -0.971
+    },
+    "corr_vs_pm": {
+     "only_first_bad": 2341,
+     "only_second_bad": 3783,
+     "z_positive_favours_first": 18.414
+    },
+    "corr_vs_uf": {
+     "only_first_bad": 2301,
+     "only_second_bad": 3766,
+     "z_positive_favours_first": 18.796
+    }
+   },
+   "decode_seconds_singlethread": {
+    "pymatching": 0.6343875000020489,
+    "moonlab_uf": 0.24684612499549985,
+    "moonlab_corr": 1.3141404159832746
+   },
+   "corr_reduction_vs_pm_pct": 14.72
+  },
+  {
+   "config": {
+    "id": "C",
+    "d": 7,
+    "p": 0.006,
+    "provenance": "our choice"
+   },
+   "seed": 1735808768,
+   "shots": 200000,
+   "ndet": 336,
+   "nobs": 1,
+   "edges": 1558,
+   "corr_links": 3827,
+   "hyper_skipped": 0,
+   "void_out_of_regime": false,
+   "logical_error_rate": {
+    "pymatching": 0.01944,
+    "moonlab_uf": 0.01997,
+    "moonlab_corr": 0.014235
+   },
+   "wilson95": {
+    "pymatching": [
+     0.018844077811993584,
+     0.020054382348236637
+    ],
+    "moonlab_uf": [
+     0.019366041647817724,
+     0.020592398153071477
+    ],
+    "moonlab_corr": [
+     0.013725094426840724,
+     0.014763565677483883
+    ]
+   },
+   "mcnemar": {
+    "uf_vs_pm": {
+     "only_first_bad": 367,
+     "only_second_bad": 261,
+     "z_positive_favours_first": -4.19
+    },
+    "corr_vs_pm": {
+     "only_first_bad": 899,
+     "only_second_bad": 1940,
+     "z_positive_favours_first": 19.519
+    },
+    "corr_vs_uf": {
+     "only_first_bad": 769,
+     "only_second_bad": 1916,
+     "z_positive_favours_first": 22.116
+    }
+   },
+   "decode_seconds_singlethread": {
+    "pymatching": 1.5682009169831872,
+    "moonlab_uf": 1.6906489169923589,
+    "moonlab_corr": 19.94116520800162
+   },
+   "corr_reduction_vs_pm_pct": 26.77
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+=== SAMPLING RERUN 1 ===
+correctness_ok = False
+  random_clifford_n40:st: marg=2.84 parity=0.37 corr=1.73
+  random_clifford_n40:mt: marg=2.81 parity=0.97 corr=2.15
+  surface_code_d5_r8:st: marg=3.08 parity=0.0 corr=0.0
+  surface_code_d5_r8:mt: marg=2.98 parity=0.0 corr=0.0
+  surface_code_d5_r8_noisy:st: marg=3.26 parity=1.19 corr=2.1
+  surface_code_d5_r8_noisy:mt: marg=3.68 parity=2.57 corr=2.53
+  det surface_code_d5_r8_noisy:st: marg=6.01 corr=1.11 ml=0.0135 stim=0.01347
+  det surface_code_d5_r8_noisy:mt: marg=3.59 corr=1.92 ml=0.01341 stim=0.01347
+=== SAMPLING RERUN 2 ===
+correctness_ok = False
+  random_clifford_n40:st: marg=2.84 parity=0.37 corr=1.73
+  random_clifford_n40:mt: marg=2.81 parity=0.97 corr=2.15
+  surface_code_d5_r8:st: marg=3.08 parity=0.0 corr=0.0
+  surface_code_d5_r8:mt: marg=2.98 parity=0.0 corr=0.0
+  surface_code_d5_r8_noisy:st: marg=3.26 parity=1.19 corr=2.1
+  surface_code_d5_r8_noisy:mt: marg=3.68 parity=2.57 corr=2.53
+  det surface_code_d5_r8_noisy:st: marg=6.01 corr=1.11 ml=0.0135 stim=0.01347
+  det surface_code_d5_r8_noisy:mt: marg=3.59 corr=1.92 ml=0.01341 stim=0.01347
+=== SAMPLING RERUN 3 ===
+correctness_ok = False
+  random_clifford_n40:st: marg=2.84 parity=0.37 corr=1.73
+  random_clifford_n40:mt: marg=2.81 parity=0.97 corr=2.15
+  surface_code_d5_r8:st: marg=3.08 parity=0.0 corr=0.0
+  surface_code_d5_r8:mt: marg=2.98 parity=0.0 corr=0.0
+  surface_code_d5_r8_noisy:st: marg=3.26 parity=1.19 corr=2.1
+  surface_code_d5_r8_noisy:mt: marg=3.68 parity=2.57 corr=2.53
+  det surface_code_d5_r8_noisy:st: marg=6.01 corr=1.11 ml=0.0135 stim=0.01347
+  det surface_code_d5_r8_noisy:mt: marg=3.59 corr=1.92 ml=0.01341 stim=0.01347
