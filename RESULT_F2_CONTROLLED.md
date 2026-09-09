@@ -261,3 +261,53 @@ engine to the exact DEM marginals instead of to a second sample; use a
 two-sample denominator wherever two samples are compared; gate on a
 family-wise quantity (Σz² over detectors against its χ² reference, or a
 Bonferroni-adjusted maximum) with seeds pooled or drawn fresh.
+
+## 11. Convergence with the maintainer, and independent rerun of candidate `b74c469`
+
+At 2026-09-08 21:13:52Z — 91 minutes after the promise comment on #21 and
+before anything from this study was posted — the maintainer published his own
+controlled comparison. It reports, for seed 1234 at 200,000 shots: legacy
+score 6.0136; worst detector index 93; MoonLab 3408 events vs Stim 3077;
+analytic probability 0.016143676730092427; pooled two-sample score 4.1440;
+deviations from the analytic reference +3.1806σ (MoonLab) and −2.6922σ
+(Stim); and the diagnosis that the gate used only Stim's binomial variance and
+that a fixed seed replays one comparison. Sections 3, 6 and 7 above, produced
+from a preregistration committed at 19:42:00Z and a run that finished at
+19:42:57Z, contain the same numbers to the digits shown. Two analyses blind to
+each other converged.
+
+He shipped the repair the same night (PR #36, merged 23:01Z: pooled two-sample
+variance, per-engine checks against the exact analytic marginals, an exact
+joint-distribution audit over 223 detector pairs, negative controls, and a
+detector-workspace packing change stated to preserve the sampled bytes and
+seeded streams) and named `b74c469` on `astra/stim-parity-v121` as the
+candidate for an independent rerun, with commands documented in
+`benchmarks/dominance/README.md`.
+
+Rerun on this host, 2026-09-09 07:59:35Z–08:00:00Z. Candidate checked out at
+`b74c4690b8f82c3a67e29e5e3a179a5585b28324` (source fingerprint
+`d8ef162ed59a…`, clean tree), built with `cmake -DCMAKE_BUILD_TYPE=Release`
+into `build/`; `libquantumsim.dylib` sha256
+`ce1b8730fbd7c44b9230ccfb8e883913afb08259a55cc6139cd112f462d3e92d`. Stim
+1.16.0; NumPy 2.5.1 here versus 2.4.6 in the maintainer's environment. Raw
+outputs: `artifacts_f2_candidate_b74c469_vendorchecks/` (his three commands,
+verbatim, with exit codes) and `artifacts_f2_candidate_b74c469_ourharness/`
+(this study's harness against the candidate build; the candidate front
+imports a sibling module, so `PYTHONPATH` must include
+`benchmarks/dominance/fronts`).
+
+| Check (maintainer's documented command) | Result on this host |
+|---|---|
+| `python -m unittest tests.release.test_sampling_statistics benchmarks.dominance.tests.test_batch_sampling_gate benchmarks.dominance.tests.test_detector_joint_accuracy` | 20 tests, OK, exit 0 |
+| `check_sampling_reference.py --shots 200000` | status PASS; 15/15 runs (seeds 1234, 7, 47, 12345, 987654321 × threads 1, 2, 4); noiseless fired 0/0; legacy score 6.01 at seed 1234 / thread 1 (5.75 at thread 2, 5.48 at seed 12345 / thread 2 — the legacy score exceeds 5 in 3 of 15 runs, as the exceedance profile in section 6 predicts); pooled two-sample score max 4.17; per-engine analytic maxima ≤ 3.77 (MoonLab) and ≤ 3.47 (Stim); exit 0 |
+| `check_detector_joint_accuracy.py --shots 200000 --seeds 1234 7 47 12345 987654321 --threads 1 4` | passed; 10/10 configurations; 223 pairs spanning all 120 detectors; per-cell alpha 1.97×10⁻⁹; family-wise false-rejection bound under IID 3.52×10⁻⁵; exit 0 |
+| this study's harness (`controlled_sampler_comparison.py`) against the candidate build | every raw count byte-identical to the v1.2.0 build: 24/24 files (MoonLab ST, MoonLab MT, Stim, Stim null partner × 4 workloads; exact vectors; translated circuits). Rules: exact check pass ×4, R1 fires nowhere, R2 fires ×4 (the legacy statistic is unchanged by design) |
+
+Reading. The candidate's packing change preserves the sampled bytes and seeded
+streams for both thread paths on every workload and seed tried here, as
+stated. Under the pooled two-sample variance the legacy 6σ cutoff's
+family-wise false-fire rate over 120 detectors is ≈ 2.4×10⁻⁷ per comparison,
+so the max-over-detectors multiplicity ceases to be a false-positive concern;
+the fixed-seed replay was the only thing that ever made the failure look
+deterministic. The certification decision remains the maintainer's; his own
+rerun of this harness would close the referee gap on this side.

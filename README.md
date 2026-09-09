@@ -20,7 +20,7 @@ from the raw artifacts in this repository.
 | C2a — plain union-find matches PyMatching sub-threshold | **Reproduced** (vendor path ~4 decimals; independent harness to 5 decimals at config A) |
 | C2b — correlated two-pass beats PyMatching | **Reproduced on both paths, with a measured boundary**: vendor workloads 4/4, reductions 17.07–51.0%; independent harness 3/3, reductions 1.51–26.77%; advantage compresses toward zero near threshold |
 | F1 — dominance runner crash on decoder front | **Fixed** — merged as [#20](https://github.com/tsotchke/moonlab/pull/20) |
-| F2 — batch-sampling correctness gate fails deterministically | **Explained (2026-09-09): a calibration defect of the gate statistic, not a sampler discrepancy** — see `RESULT_F2_CONTROLLED.md` (controlled comparison under the maintainer's four conditions, exact DEM reference, 2M shots per engine; candidate-unreferreed). Original observation: 6.01σ ST / 3.59σ MT detector-marginals gate on `surface_code_d5_r8_noisy`; fire rates ml=0.01350 vs stim=0.01347; bit-identical across reruns (front internally seeded) |
+| F2 — batch-sampling correctness gate fails deterministically | **Explained (2026-09-09): a calibration defect of the gate statistic, not a sampler discrepancy; independently reached by the maintainer the same night (moonlab#21, PR #36); his candidate `b74c469` passes his repaired checks on this host and preserves the v1.2.0 sampled bytes** — see `RESULT_F2_CONTROLLED.md` (controlled comparison under the maintainer's four conditions, exact DEM reference, 2M shots per engine; candidate-unreferreed). Original observation: 6.01σ ST / 3.59σ MT detector-marginals gate on `surface_code_d5_r8_noisy`; fire rates ml=0.01350 vs stim=0.01347; bit-identical across reruns (front internally seeded) |
 | F3 — Clifford front | **Reproduced cleanly**, 1.62–1.70× (n=20..500), correctness True at every size |
 | F4 — correlated decode throughput | Trade-off measured: 0.35–2.13× vs PyMatching on vendor workloads (accuracy is bought with time at larger d) |
 
@@ -42,6 +42,8 @@ from the raw artifacts in this repository.
 - `artifacts_f2_controlled_r2/` — F2 raw artifacts: `results.json`, per-seed detector counts for MoonLab ST/MT, Stim, and the Stim null partner on four workloads, exact vectors, translated circuits, labels (run r2 reproduced run r1 byte for byte)
 - `CONTROLLED_COMPARISON_PREREG_F2B.md`, `f2b_mt_round1_followup.py`, `artifacts_f2b_mt_round1/` — preregistered follow-up of one exploratory signal (MoonLab MT, round-1 detectors) on 8M fresh shots: not replicated
 - `RESULT_F2_CONTROLLED.md` — F2 result report, with the internal review's findings and dispositions
+- `artifacts_f2_candidate_b74c469_vendorchecks/` — independent rerun of the maintainer's candidate `b74c469` (`astra/stim-parity-v121`) with his three documented commands, verbatim, outputs and exit codes (unit tests OK; sampling-reference probe PASS 15/15; joint audit passed 10/10)
+- `artifacts_f2_candidate_b74c469_ourharness/` — this study's harness against the candidate build: every sampled count byte-identical to the v1.2.0 build (24/24 files)
 - `SHA256SUMS` — hashes of every file above
 
 ## Redaction note
