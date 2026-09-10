@@ -311,3 +311,20 @@ so the max-over-detectors multiplicity ceases to be a false-positive concern;
 the fixed-seed replay was the only thing that ever made the failure look
 deterministic. The certification decision remains the maintainer's; his own
 rerun of this harness would close the referee gap on this side.
+
+### 11a. The `v1.2.1` tag (`a15dabc`)
+
+On 2026-09-10 the repository carried an annotated tag `v1.2.1` at
+`a15dabcf79a93b195ed062c6ed338cb4bc2c733b` (the commit the maintainer named
+as the exact certification candidate in PR #37; no GitHub release published
+yet at 16:32Z, PR #38 having set up a manual promotion step). The tag contains
+the PR #36 merge (`9296731`). Same procedure, 16:34:25Z–16:34:44Z, clean
+worktree, Release build, `libquantumsim.dylib` sha256 `5a2f85278f642639…`:
+unit tests 20 OK; `check_sampling_reference.py --shots 200000` PASS 15/15
+(legacy 6.01 at seed 1234 / thread 1, pooled two-sample max 4.17, analytic
+maxima ≤ 3.77 / ≤ 3.47, source fingerprint clean); joint audit passed 10/10,
+223 pairs, family-wise bound 3.52×10⁻⁵; this study's harness against the tag
+build: 24/24 raw files byte-identical to the v1.2.0 build, rules exact-check
+pass ×4 / R1 fires nowhere / R2 fires ×4. Raw outputs:
+`artifacts_f2_v121_a15dabc_vendorchecks/` and
+`artifacts_f2_v121_a15dabc_ourharness/`.

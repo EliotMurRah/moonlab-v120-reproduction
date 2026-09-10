@@ -44,6 +44,7 @@ from the raw artifacts in this repository.
 - `RESULT_F2_CONTROLLED.md` — F2 result report, with the internal review's findings and dispositions
 - `artifacts_f2_candidate_b74c469_vendorchecks/` — independent rerun of the maintainer's candidate `b74c469` (`astra/stim-parity-v121`) with his three documented commands, verbatim, outputs and exit codes (unit tests OK; sampling-reference probe PASS 15/15; joint audit passed 10/10)
 - `artifacts_f2_candidate_b74c469_ourharness/` — this study's harness against the candidate build: every sampled count byte-identical to the v1.2.0 build (24/24 files)
+- `artifacts_f2_v121_a15dabc_vendorchecks/`, `artifacts_f2_v121_a15dabc_ourharness/` — the same two reruns on the `v1.2.1` tag (`a15dabc`, contains the #36 gate fix): vendor checks pass (unit tests OK; sampling-reference PASS 15/15; joint audit passed 10/10); 24/24 raw files byte-identical to v1.2.0
 - `SHA256SUMS` — hashes of every file above
 
 ## Redaction note
